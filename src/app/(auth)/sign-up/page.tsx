@@ -7,20 +7,23 @@ import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import { useFrom } from 'react-hook-form';;
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod';
-import { TAuthCredentialValidator, AuthCredentialsValidator } from "@/lib/validators/account-credentials-validator";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import {
+  TAuthCredentialValidator,
+  AuthCredentialsValidator,
+} from "@/lib/validators/account-credentials-validator";
 
 const page = () => {
-
-
-  const { register, handleSubmit, formState: { errors } } = useForm<TAuthCredentialValidator>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TAuthCredentialValidator>({
     resolver: zodResolver(AuthCredentialsValidator),
-  })
-  const onSubmit = ({ email, password }: TAuthCredentialValidator) => {
-
-  }
+  });
+  const onSubmit = ({ email, password }: TAuthCredentialValidator) => {};
   return (
     <>
       <div className="container relative flex pt-20 flex-col items-center justify-center lg:px-0">
@@ -47,7 +50,7 @@ const page = () => {
                   <Input
                     {...register("email")}
                     className={cn({
-                      "focus-visible:ring-red-500": erros.email,
+                      "focus-visible:ring-red-500": errors.email,
                     })}
                     placeholder="you@example.com"
                   />
